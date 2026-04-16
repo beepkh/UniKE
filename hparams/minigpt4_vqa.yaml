@@ -1,0 +1,54 @@
+# Model
+device: 0
+alg_name: "UNIKE"
+name: /path/to/vicuna-7b
+model_name: minigpt4
+model_class: Blip2OPT
+tokenizer_class: LlamaTokenizer
+tokenizer_name: /path/to/vicuna-7b
+
+tp_layers:
+  'llama_model.model.layers.31.mlp.gate_proj': 'output'
+  'llama_model.model.layers.31.mlp.up_proj': 'output'
+  'llama_model.model.layers.31.mlp.down_proj': 'input'
+
+  'llama_model.model.layers.30.mlp.gate_proj': 'output'
+  'llama_model.model.layers.30.mlp.up_proj': 'output'
+  'llama_model.model.layers.30.mlp.down_proj': 'input'
+
+  'llama_model.model.layers.29.mlp.gate_proj': 'output'
+  'llama_model.model.layers.29.mlp.up_proj': 'output'
+  'llama_model.model.layers.29.mlp.down_proj': 'input'
+
+  'llama_model.model.layers.28.mlp.gate_proj': 'output'
+  'llama_model.model.layers.28.mlp.up_proj': 'output'
+  'llama_model.model.layers.28.mlp.down_proj': 'input'
+
+l_ike_layers:
+  - 'llama_model.model.layers.31.mlp'
+  - 'llama_model.model.layers.30.mlp'
+  - 'llama_model.model.layers.29.mlp'
+  - 'llama_model.model.layers.28.mlp'
+
+edit_lr: 2e-3
+seed: 42
+opt_class: Adam
+max_norm: 1.0
+continuous_sample: 1 # single edit, >1 for sequential
+
+results_dir: ./results
+
+qformer_checkpoint: /path/to/blip2_pretrained_flant5xxl.pth
+qformer_name_or_path: /path/to/bert-base-uncased
+state_dict_file: /path/to/eva_vit_g.pth
+pretrained_ckpt: /path/to/pretrained_minigpt4_7b.pth
+
+# Image
+coco_image: /path/to/images
+rephrase_image: /path/to/images
+
+max_epochs: 20
+
+retrieved_knowledge_path: /path/to/UniKE_ckpt/minigpt4/retrieved_ik_states/mmedit/vqa
+latent_ike_path: /path/to/UniKE_ckpt/minigpt4/ckpt/l-ike.pth
+semantic_encoder_path: /path/to/UniKE_ckpt/minigpt4/ckpt/semantic_encoder.pt
