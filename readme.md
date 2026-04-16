@@ -32,7 +32,7 @@ You should first prepare **MiniGPT-4** as the MLLM (with Vicuna-7B backbone). Do
 > If you choose a different download location, you also need to modify `cache_dir='./hugging_cache'` in `easyeditor/trainer/blip2_models/blip2.py` to the parent directory of your `bert-base-uncased`.
 
 
-### 2.2 UniKE Checkpoints
+### 2.2 UniKE Checkpoints and Knowledge States
 
 Download the checkpoints and knowledge states from [Parva1012/UniKE_ckpt](https://huggingface.co/Parva1012/UniKE_ckpt) for UniKE and update these paths in the YAML config:
 
